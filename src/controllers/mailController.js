@@ -9,7 +9,7 @@ const senderConfig= require("../../config.json")
 
 
 const sendmail = async (req, res) => {
-    const { userEmail,subject,hour,minutes} = req.body;
+    const { userEmail,subject,organizer_name,organizer_mailaddress} = req.body;
 
 
     let config = {
@@ -26,7 +26,7 @@ const sendmail = async (req, res) => {
         title: 'Meeting Invitation',
         description: 'test discussion',
         location: 'Kolkata',
-        organizer: { name: 'Your Name', email: 'your-email@gmail.com' },
+        organizer: { name: organizer_name, email: organizer_mailaddress },
       };
 
     const { error, value } = ics.createEvent(event);

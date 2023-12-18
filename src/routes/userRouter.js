@@ -1,8 +1,6 @@
 // import controllers review, products
 const userController = require('../controllers/userController.js')
 const mailController=require('../controllers/mailController.js')
-
-const mailController1=require('../controllers/mailController1.js')
 // router
 const router = require('express').Router()
 
@@ -24,6 +22,5 @@ router.get('/searchterm', userController.searchTerm)
 
 router.post('/sendmail',mailController.sendmail)
 
-router.post('/sendmail1',mailController1.sendICalEmail)
 
 module.exports = router

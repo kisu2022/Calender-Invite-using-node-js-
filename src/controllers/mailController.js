@@ -19,7 +19,6 @@ const sendmail = async (req, res) => {
             pass: senderConfig.PASSWORD
         }
     }
-
     const event = {
         start: [2023, 12, 19, 10, 0],
         duration: { hours: 1, minutes: 30 },
@@ -35,21 +34,23 @@ const sendmail = async (req, res) => {
             process.exit(1);
         }
     console.log(value)
+    
     let transporter = nodemailer.createTransport(config);
 
-    
-
-  
+    const buf = Buffer.from(value.toString(), 'utf-8');
+    const base64Cal = buf.toString('base64');
 
     let message = {
         from: senderConfig.EMAIL, 
         to: userEmail, 
         subject: subject, 
         text: "Please accept the invitation Link.", 
-        icalEvent: {
+        attachments: {
             filename: 'invitation.ics',
             method: 'request',
-            content: value,
+            content: base64Cal,
+            type:'text/calendar',
+            encoding:'base64'
         },
       }
 
